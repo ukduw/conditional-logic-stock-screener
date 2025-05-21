@@ -1,7 +1,8 @@
 from yahooquery import Screener
 
-# REPLACE screener_slug WITH CUSTOM SCREENER'S SLUG
-def get_tickers_from_yahoo(screener_slug="day_gainers", count=100):
+# CUSTOM SCREENER SLUG: c7689407-8938-457e-b899-523599febde1
+
+def get_tickers_from_yahoo(screener_slug="c7689407-8938-457e-b899-523599febde1", count=100):
     try:
         s = Screener()
         results = s.get_screeners(screener_slug, count=count)

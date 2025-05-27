@@ -7,10 +7,10 @@ def passes_custom_filter(ticker):
         float_shares = info.get("floatShares")
         dollar_volume = info.get("regularMarketPrice") * volume
         market_cap = info.get("marketCap")
-        avg_volume_30d = info.get("averageVolume")
+        # avg_volume_30d = info.get("averageVolume")
 
-        # 1) Float rotation check, 2) $Vol > MCap, 3) Relative volume > 2.0 
-        return volume > float_shares and dollar_volume > market_cap and volume/avg_volume_30d >= 2.0
+        # 1) Float rotation check, 2) $Vol > MCap, UPDATE: REMOVED "3) Relative volume"
+        return volume > float_shares and dollar_volume > market_cap
     except Exception as e:
         print(f"Error for {ticker}: {e}")
         return False

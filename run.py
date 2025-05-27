@@ -1,9 +1,9 @@
-from fetch_tickers import get_tickers_from_yahoo
+from fetch_tickers import get_all_finviz_tickers
 from screener import filtered_tickers
 
-screener_slug = "c7689407-8938-457e-b899-523599febde1"
+base_url = "https://finviz.com/screener.ashx?v=111&f=geo_usa,sh_curvol_o1000,sh_price_u20,sh_relvol_o2"
 
-tickers = get_tickers_from_yahoo(screener_slug, count=100)
+tickers = get_all_finviz_tickers(base_url)
 filtered = filtered_tickers(tickers)
 
 print("Filtered List:")

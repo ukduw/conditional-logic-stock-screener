@@ -14,10 +14,11 @@
 
 Note that there is no "% Change" condition and that this screener will return a large number of stocks (~100).
 
+
 2. The CLSS then uses Yahoo Finance API for market data. This data is used to further filter the array with conditional logic, which is a feature not available in the vast majority of screeners. The additional filters include:
     - Intraday Volume > Shares Float
     - Dollar Volume > Market Cap   
-    
+
 The first condition, for example, checks for any degree of Float Rotation.  
 
 This returns a very short list of stocks (typically <10). The purpose of this screener is to return only stocks that have exhibited disproportionate activity, regardless of % Gain. It also takes into account how significant the activity is relative to the size of the stock (i.e. 60d average volume, market cap, shares float, intraday price).
@@ -27,5 +28,6 @@ This returns a very short list of stocks (typically <10). The purpose of this sc
     - Top Losers with disproportionate/significant activity
 
 CLSS is especially useful for traders with multiple strategies and/or traders with strategies with high fake-out rates.
+
 
 3. The final output is written to a CSV file for easy export

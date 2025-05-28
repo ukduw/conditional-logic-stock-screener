@@ -30,7 +30,7 @@ def get_all_finviz_tickers(filter_url, max_pages=6):
 
 
 # TEST
-# base_url = "https://finviz.com/screener.ashx?v=111&f=cap_smallunder%2Cgeo_usa%2Csh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o2&o=-change"
+# base_url = "https://finviz.com/screener.ashx?v=111&s=ta_topgainers&f=sh_curvol_o1000%2Cta_perf_d15o"
 
 # tickers = get_all_finviz_tickers(base_url)
 # print(f"Found {len(tickers)} tickers")

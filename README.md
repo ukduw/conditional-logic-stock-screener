@@ -15,7 +15,7 @@
 Note that there is no "% Change" condition and that this screener will return a large number of stocks (~100).
 
 
-2. The CLSS then uses Yahoo Finance API for market data. This data is used to further filter the array with conditional logic, which is a feature not available in the vast majority of screeners. The additional filters include:
+2. The CLSS then uses Yahoo Finance API for market data. This data is used to further filter the array with data-data conditional logic, which is a feature not available in the vast majority of screeners. The additional filters include:
     - Intraday Volume > Shares Float
     - Dollar Volume > Market Cap   
 

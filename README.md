@@ -25,3 +25,5 @@ This returns a very short list of stocks (typically <10). The purpose of this sc
     - Top Losers with disproportionate/significant activity
 
 CLSS is especially useful for traders with multiple strategies and/or traders with strategies with high fake-out rates.
+
+3. The final output is written to a CSV file for easy export

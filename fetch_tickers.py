@@ -1,3 +1,4 @@
+import time
 import requests
 from bs4 import BeautifulSoup
 
@@ -10,6 +11,8 @@ def get_all_finviz_tickers(filter_url, max_pages=100):
         start_row = 1 + page * 20
         paged_url = f"{filter_url}&r={start_row}"
         print(f"Fetching: {paged_url}")
+
+        time.sleep(1)
 
         response = requests.get(paged_url, headers=headers)
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -25,7 +28,9 @@ def get_all_finviz_tickers(filter_url, max_pages=100):
 
     return tickers
 
-base_url = "https://finviz.com/screener.ashx?v=111&f=geo_usa,sh_curvol_o1000,sh_price_u20,sh_relvol_o2"
+
+# TEST
+base_url = "https://finviz.com/screener.ashx?v=111&f=cap_smallunder%2Cgeo_usa%2Csh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o2&o=-change"
 
 tickers = get_all_finviz_tickers(base_url)
 print(f"Found {len(tickers)} tickers")

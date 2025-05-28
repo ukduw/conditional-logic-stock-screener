@@ -1,7 +1,7 @@
 from fetch_tickers import get_all_finviz_tickers
 from screener import filtered_tickers
 
-base_url = "https://finviz.com/screener.ashx?v=111&f=geo_usa,sh_curvol_o1000,sh_price_u20,sh_relvol_o2"
+base_url = "https://finviz.com/screener.ashx?v=111&f=cap_smallunder%2Cgeo_usa%2Csh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o2&o=-change"
 
 tickers = get_all_finviz_tickers(base_url)
 filtered = filtered_tickers(tickers)

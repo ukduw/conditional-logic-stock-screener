@@ -8,12 +8,11 @@ tickers = get_all_finviz_tickers(base_url)
 filtered = filtered_tickers(tickers)
 
 
-print("Filtered List:")
+print(f"Filtered List({len(filtered)}):")
 for ticker in filtered:
     print(ticker)
 
 with open('filtered_tickers.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow(['Ticker'])
     for ticker in filtered:
         writer.writerow([ticker])

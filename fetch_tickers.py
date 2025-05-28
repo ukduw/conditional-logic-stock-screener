@@ -2,7 +2,7 @@ import time, random
 import requests
 from bs4 import BeautifulSoup
 
-def get_all_finviz_tickers(filter_url, max_pages=6):
+def get_all_finviz_tickers(filter_url, max_pages=10):
     tickers = []
     headers = {'User-Agent': "Mozilla/5.0"}
 
@@ -21,7 +21,7 @@ def get_all_finviz_tickers(filter_url, max_pages=6):
         page_tickers = [a.text.strip() for a in ticker_links if a.get('href', '').startswith('quote.ashx')]
         print(f'Found {len(page_tickers)} tickers on page {page+1}')
 
-        if not page_tickers:
+        if len(page_tickers) == 0:
             break
 
         tickers.extend(page_tickers)

@@ -9,7 +9,6 @@ def get_all_finviz_tickers(filter_url, max_pages=6):
     for page in range(max_pages):
         start_row = 1 + page * 20
         paged_url = f"{filter_url}&r={start_row}"
-        print(f"Fetching: {paged_url}")
 
         time.sleep(random.uniform(0.3, 0.6)) 
 

@@ -19,6 +19,6 @@ def filtered_tickers(ticker_list):
 
 
 # TEST
-if __name__ == "__main__":
-    sample = ["AAPL", "TSLA", "NVDA"]
-    print(filtered_tickers(sample))
+# if __name__ == "__main__":
+#     sample = ["AAPL", "TSLA", "NVDA"]
+#     print(filtered_tickers(sample))

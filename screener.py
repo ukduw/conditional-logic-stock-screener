@@ -18,6 +18,7 @@ def filtered_tickers(ticker_list):
     return [t for t in ticker_list if passes_custom_filter(t)]
 
 
+
 # TEST
 # if __name__ == "__main__":
 #     sample = ["AAPL", "TSLA", "NVDA"]

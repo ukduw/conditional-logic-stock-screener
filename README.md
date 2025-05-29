@@ -1,7 +1,11 @@
 
 ## Install and Run:
--pip install -r requirements.txt   
--python3 run.py
+python3 -m venv venv   
+source venv/bin/activate   
+
+pip install -r requirements.txt   
+
+python3 run.py
 
 
 ## Conditional Logic Stock Screener (CLSS)

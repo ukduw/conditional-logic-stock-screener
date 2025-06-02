@@ -34,4 +34,8 @@ This returns a very short list of stocks (typically <10). The purpose of this sc
 CLSS is especially useful for traders with multiple strategies and/or traders with strategies with high fake-out rates.
 
 
-3. The final output is written to a CSV file for easy export
+3. The final output is written to a CSV file for easy export. The files are automatically named after the starting date of the week, grouping the screener outputs by trading week. A count of the number of tickers returned is included with each row.
+
+This feature can be used to generate statistics or to keep a record of tickers by date.
+
+I plan on using the CSV exports, along with trade data and historical market data to train an AI model to learn (and improve on) my trading style and strategies, and to use my python scripts to screen and trade.

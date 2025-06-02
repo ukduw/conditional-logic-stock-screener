@@ -29,9 +29,3 @@ def get_all_finviz_tickers(filter_url, max_pages=10):
     return tickers
 
 
-# TEST
-# base_url = "https://finviz.com/screener.ashx?v=111&s=ta_topgainers&f=sh_curvol_o1000%2Cta_perf_d15o"
-
-# tickers = get_all_finviz_tickers(base_url)
-# print(f"Found {len(tickers)} tickers")
-# print(tickers[:10]) # preview first 10...

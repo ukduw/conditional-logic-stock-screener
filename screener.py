@@ -8,7 +8,7 @@ def passes_custom_filter(ticker):
         dollar_volume = info.get("regularMarketPrice") * volume
         market_cap = info.get("marketCap")
 
-        # 1) Float rotation check, 2) $Vol > MCap"
+        # 1) Float rotation check, 2) $Vol > MCap", 3) 
         return volume > float_shares and dollar_volume > market_cap
     except Exception as e:
         print(f"Error for {ticker}: {e}")
@@ -17,9 +17,3 @@ def passes_custom_filter(ticker):
 def filtered_tickers(ticker_list):
     return [t for t in ticker_list if passes_custom_filter(t)]
 
-
-
-# TEST
-# if __name__ == "__main__":
-#     sample = ["AAPL", "TSLA", "NVDA"]
-#     print(filtered_tickers(sample))

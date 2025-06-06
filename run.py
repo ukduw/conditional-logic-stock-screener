@@ -1,6 +1,6 @@
 from fetch_tickers import get_all_finviz_tickers
 from screener import filtered_tickers
-import csv, os
+import csv
 import datetime, calendar
 
 base_url = "https://finviz.com/screener.ashx?v=111&f=cap_smallunder%2Cgeo_usa%2Csh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o2&o=-change"

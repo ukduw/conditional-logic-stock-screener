@@ -19,13 +19,13 @@
 Note that there is no "% Change" condition and that **this screener will return a large number of stocks (~100)**.
 
 
-2. **The CLSS then uses Yahoo Finance API for market data. This data is used to further filter the array with data-data conditional logic, which is a feature not available in the vast majority of screeners. The additional filters include:**
+2. **The CLSS then uses Yahoo Finance API for fundamental data. This data is used to further filter the array with data-data conditional logic, which is a feature not available in the vast majority of screeners. The additional filters include:**
     - Intraday Volume > Shares Float
     - Dollar Volume > Market Cap   
 
 The first condition, for example, checks for any degree of Float Rotation.  
 
-**This returns a very short list of stocks (typically <10)**. The purpose of this screener is to return only stocks that have exhibited disproportionate activity, regardless of % Gain. It takes into account how significant this activity is relative to the size of the stock itself (i.e. 60d average volume vs current volume, market cap vs $volume, shares float vs intraday volume).
+**This returns a very short list of stocks (typically ~10)**. The purpose of this screener is to return only stocks that have exhibited disproportionate activity, regardless of % Gain. It takes into account how significant this activity is relative to the size of the stock itself (i.e. 60d average volume vs current volume, market cap vs $volume, shares float vs intraday volume).
 
 - Rather than only returning the **Top Gainers**, the CLSS will also return:
     - **Stocks that spiked, then sold off**, losing most/all of their gains - these stocks are typically filtered out by % Gain conditions and **cannot be captured by using other screeners**' basic Range filter, which, again, cannot be used conditionally (e.g. Range >= 30% Intraday Price)
@@ -44,4 +44,4 @@ This feature can be used to generate statistics or to keep a record of tickers b
 &nbsp;
 ---
 ### Plans
-I plan on using the CSV exports, along with trade data and historical market data, to train an AI model to use my python scripts to screen and trade, using (and improving on) my trading style and strategies.
+I plan on using the CSV exports, along with trade data and historical market data, to train an AI model to set trade parameters according to my strategies and use them with my Python scripts to autonomously build watchlists and structure trades.

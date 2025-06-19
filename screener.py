@@ -17,3 +17,6 @@ def passes_custom_filter(ticker):
 def filtered_tickers(ticker_list):
     return [t for t in ticker_list if passes_custom_filter(t)]
 
+
+# what to do about yf data unreliability...?
+    # finviz scrape? - would be a lot of extra requests though...

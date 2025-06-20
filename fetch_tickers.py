@@ -2,7 +2,7 @@ import time, random
 import requests
 from bs4 import BeautifulSoup
 
-def get_all_finviz_tickers(filter_url, max_pages=10):
+def get_all_finviz_tickers(filter_url, max_pages=20):
     tickers = []
     headers = {'User-Agent': "Mozilla/5.0"}
 

@@ -18,6 +18,6 @@ def filtered_tickers(ticker_list):
     return [t for t in ticker_list if passes_custom_filter(t)]
 
 
-# recently missed a ticker, then caught it the next day - possibly finviz conditions + delay...
-# most likely the intraday price condition - raise and test?
-    # update: could also be volume on the losers side...
+# continue testing; occassional miss may have been addressed when i fixed the incorrect slice in fetch_tickers
+    # will not have addressed the volume issue on the loser side...
+    # remains to be seen if this is a real problem

@@ -16,12 +16,12 @@ def get_all_finviz_tickers(filter_url, max_pages=20):
         soup = BeautifulSoup(response.text, 'html.parser')
 
         links = soup.select('a.tab-link')
-        ticker_links = links[5:-7] if len(links) > 12 else []
+        ticker_links = links[4:-7] if len(links) > 12 else []
 
         page_tickers = [a.text.strip() for a in ticker_links if a.get('href', '').startswith('quote.ashx')]
         print(f'Found {len(page_tickers)} tickers on page {page+1}')
 
-        if len(page_tickers) == 0:
+        if len(page_tickers) == 1:
             break
 
         tickers.extend(page_tickers)

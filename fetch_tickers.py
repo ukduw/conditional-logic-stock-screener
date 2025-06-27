@@ -21,7 +21,7 @@ def get_all_finviz_tickers(filter_url, max_pages=20):
         page_tickers = [a.text.strip() for a in ticker_links if a.get('href', '').startswith('quote.ashx')]
         print(f'Found {len(page_tickers)} tickers on page {page+1}')
 
-        if len(page_tickers) == 1:
+        if len(page_tickers) == 1 or len(page_tickers) == 0:
             break
 
         tickers.extend(page_tickers)

@@ -2,7 +2,7 @@ import time, random
 import requests
 from bs4 import BeautifulSoup
 
-def get_all_finviz_tickers(filter_url, max_pages=20):
+def get_all_finviz_tickers(filter_url, max_pages=30):
     tickers = []
     headers = {'User-Agent': "Mozilla/5.0"}
 
@@ -29,3 +29,9 @@ def get_all_finviz_tickers(filter_url, max_pages=20):
     return tickers
 
 
+# previous commit message was mistaken...
+# i think, hopefully, i was just timed out; now, all requests return NOTHING
+    # for whatever reason, finviz returned 500-something tickers - timed out after 17 pages
+
+# very abnormal for the screener to return 500-something...
+# regardless, most straightforward fix may just be to make the screener more stringent

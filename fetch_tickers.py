@@ -28,18 +28,3 @@ def get_all_finviz_tickers(filter_url, max_pages=30):
 
     return tickers
 
-
-# previous commit message was mistaken...
-# i think, hopefully, i was just timed out; now, all requests return NOTHING
-    # for whatever reason, finviz returned 500-something tickers - timed out after 17/27 pages
-
-# very abnormal for the screener to return 500-something tickers...
-# regardless, most straightforward fix may just be to make the screener more stringent
-# I DIDN'T REALISE YOU CAN VIEW JUST THE TICKERS... ALL IN ONE PAGE
-    # even if i update the scrape module, still worried about making that many API requests to yf...
-
-# https://finviz.com/screener.ashx?v=411&f=cap_smallunder%2Cgeo_usa%2Csh_curvol_o2000%2Csh_float_u50%2Csh_price_u20%2Csh_relvol_o3&o=-change
-    # ticker-only, r. vol 3x, float <50mil, vol >2mil
-# https://finviz.com/screener.ashx?v=111&f=cap_smallunder,geo_usa,sh_curvol_o2000,sh_float_u50,sh_price_u20,sh_relvol_o3&o=-change
-    # normal view, same conditions
-    # TEST THIS ONE FIRST

@@ -18,6 +18,5 @@ def filtered_tickers(ticker_list):
     return [t for t in ticker_list if passes_custom_filter(t)]
 
 
-# continue testing; occassional miss may have been addressed when i fixed the incorrect slice in fetch_tickers
-    # will not have addressed the volume issue on the loser side...
-    # remains to be seen if this is a real problem
+# screener may be too stringent (e.g. float <50mil); continue testing
+# may need additional screen for aftermarket...

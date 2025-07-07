@@ -4,7 +4,7 @@ from screener import filtered_tickers
 import csv
 import datetime, calendar
 
-base_url = "https://finviz.com/screener.ashx?v=411&f=cap_smallunder,geo_usa,sh_curvol_o2000,sh_price_u20,sh_relvol_o3&o=-change"
+base_url = "https://finviz.com/screener.ashx?v=411&f=cap_smallunder%2Cgeo_usa%2Csh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o3&o=-change"
     # initial screener
     # https://finviz.com/screener.ashx?v=111&f=cap_smallunder%2Cgeo_usa%2Csh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o2&o=-change
 
@@ -18,6 +18,9 @@ base_url = "https://finviz.com/screener.ashx?v=411&f=cap_smallunder,geo_usa,sh_c
     # slightly less stringent, TICKER ONLY
         # (r.vol 3x, (NO FLOAT SCREEN), intra vol >2mil)
     # https://finviz.com/screener.ashx?v=411&f=cap_smallunder,geo_usa,sh_curvol_o2000,sh_price_u20,sh_relvol_o3&o=-change
+
+    # initial screener + 3x r.vol, TICKER ONLY
+    # https://finviz.com/screener.ashx?v=411&f=cap_smallunder%2Cgeo_usa%2Csh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o3&o=-change
 
 # tickers = get_all_finviz_tickers(base_url)
 tickers = get_finviz_tickers_from_tickerview(base_url)

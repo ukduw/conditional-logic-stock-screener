@@ -1,5 +1,6 @@
 from fetch_tickers import get_all_finviz_tickers
 from fetch_tickerview import get_finviz_tickers_from_tickerview
+from fetch_afterhours import get_afterhours_gainers_from_tradingview
 from screener import filtered_tickers
 import csv
 import datetime, calendar
@@ -7,15 +8,15 @@ import datetime, calendar
 base_url = "https://finviz.com/screener.ashx?v=411&f=cap_smallunder%2Cgeo_usa%2Csh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o3&o=-change"
     # initial screener
     # https://finviz.com/screener.ashx?v=111&f=cap_smallunder%2Cgeo_usa%2Csh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o2&o=-change
-
-
     # initial screener + 3x r.vol, TICKER ONLY
     # https://finviz.com/screener.ashx?v=411&f=cap_smallunder%2Cgeo_usa%2Csh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o3&o=-change
+base_url2 = "https://www.tradingview.com/markets/stocks-usa/market-movers-after-hours-gainers"
 
 
 # tickers = get_all_finviz_tickers(base_url)
 tickers = get_finviz_tickers_from_tickerview(base_url)
 filtered = filtered_tickers(tickers)
+afters = get_afterhours_gainers_from_tradingview(base_url2)
 
 print(f"Filtered List({len(filtered)}):")
 print(filtered)

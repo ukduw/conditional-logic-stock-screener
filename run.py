@@ -38,10 +38,12 @@ if first_mon < 1:
     first_mon = first_mon + max(cal.itermonthdays(current_year, current_month_num-1))
 
 
-file_path = f"/home/edliu/edliu/conditional-logic-stock-screener/weekly-csv/week_beginning_{num_to_month}_{str(first_mon)}.csv" # replace with absolute path for cron job
+file_path = f"/home/edliu/edliu/conditional-logic-stock-screener/weekly-csv/week_beginning_{num_to_month}_{str(first_mon)}.csv"
 filtered_with_count = [len(filtered)] + filtered
+afters_with_count = [len(afters)] + afters
 
 with open(file_path, mode='a', newline='') as file:
     writer = csv.writer(file)
     writer.writerow(filtered_with_count)
+    writer.writerow(afters_with_count)
     file.write("\n\n")

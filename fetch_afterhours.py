@@ -14,3 +14,8 @@ def get_afterhours_gainers_from_tradingview(filter_url):
 
     
     return tickers
+
+
+
+
+# https://www.tradingview.com/markets/stocks-usa/market-movers-after-hours-gainers/

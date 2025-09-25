@@ -8,22 +8,25 @@ def get_afterhours_gainers_from_tradingview(filter_url):
     response = requests.get(filter_url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
 
-    table = soup.find_all("table")[1]
+    table = soup.find("table")
 
-    for row in enumerate(table.find_all("tr")):
-        gains = row.find_all("span", class_="positive-p_QIAEOQ")
-        for g in gains:
-            gain = g.get_text(strip=True)
+    for row in table.find_all("tr"):
+        gains = row.find("span", class_="positive-p_QIAEOQ")
+
+        if gains is not None:
+            gain = gains.get_text(strip=True)
             gain_cleaned = gain[1:-1]
 
-            if int(gain_cleaned) > 30: # 30% gain, tweak later
+            if float(gain_cleaned) > 30: # 30% gain, tweak later
                 ticker_containers = row.find_all("a")
                 for t in ticker_containers:
                     ticker = t.get_text(strip=True)
-                    ticker.append(ticker)
+                    tickers.append(ticker)
+            else:
+                break
 
     print(f"After-hours screen returned {len(tickers)} Tickers")
 
-    
+
     return tickers
 

@@ -7,6 +7,7 @@
 
 `python3 run.py`
 
+NOTE: RE-WRITE README
 
 ## Conditional Logic Stock Screener (CLSS)
 1. **The CLSS first scrapes a Finviz screener, building an array of tickers. The Finviz screener has the following conditions:**

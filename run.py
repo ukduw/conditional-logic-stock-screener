@@ -44,6 +44,5 @@ afters_with_count = [len(afters)] + afters
 
 with open(file_path, mode='a', newline='') as file:
     writer = csv.writer(file)
-    writer.writerow(filtered_with_count)
-    writer.writerow(afters_with_count)
+    writer.writerow(filtered_with_count + [" - "] + afters_with_count)
     file.write("\n\n")

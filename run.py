@@ -20,6 +20,7 @@ tickers = get_finviz_tickers_from_tickerview(base_url)
 filtered = filtered_tickers(tickers)
 afters = get_afterhours_gainers_from_tradingview(base_url2)
 
+print(f"=== {current_date} ===")
 print(f"Filtered List({len(filtered)}):")
 print(filtered)
 print(f"After-hours Gainers({len(afters)}):")

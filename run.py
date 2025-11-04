@@ -14,6 +14,8 @@ base_url2 = "https://www.tradingview.com/markets/stocks-usa/market-movers-after-
 
 current_date = datetime.datetime.now()
 
+rounded_min = (current_date - datetime.timedelta(microseconds=current_date.microsecond // 1000 * 1000))
+
 
 # tickers = get_all_finviz_tickers(base_url)
 tickers = get_finviz_tickers_from_tickerview(base_url)

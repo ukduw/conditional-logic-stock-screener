@@ -21,7 +21,7 @@ afters = get_afterhours_gainers_from_tradingview(base_url2)
 print(f"Filtered List({len(filtered)}):")
 print(filtered)
 print(f"After-hours Gainers({len(afters)}):")
-print(afters)
+print(afters, "\n")
 
 
 current_date = datetime.datetime.now()

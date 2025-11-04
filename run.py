@@ -12,16 +12,16 @@ base_url = "https://finviz.com/screener.ashx?v=411&f=cap_smallunder%2Cgeo_usa%2C
     # https://finviz.com/screener.ashx?v=411&f=cap_smallunder%2Cgeo_usa%2Csh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o3&o=-change
 base_url2 = "https://www.tradingview.com/markets/stocks-usa/market-movers-after-hours-gainers"
 
-current_date = datetime.datetime.now()
-
-rounded_min = (current_date - datetime.timedelta(microseconds=current_date.microsecond // 1000 * 1000))
-without_milli = rounded_min.replace(microsecond=0)
-
-
 # tickers = get_all_finviz_tickers(base_url)
 tickers = get_finviz_tickers_from_tickerview(base_url)
 filtered = filtered_tickers(tickers)
 afters = get_afterhours_gainers_from_tradingview(base_url2)
+
+
+current_date = datetime.datetime.now()
+
+rounded_min = (current_date - datetime.timedelta(microseconds=current_date.microsecond // 1000 * 1000))
+without_milli = rounded_min.replace(microsecond=0)
 
 print(f"=== {without_milli} ===")
 print(f"Filtered List({len(filtered)}):")

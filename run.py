@@ -12,6 +12,8 @@ base_url = "https://finviz.com/screener.ashx?v=411&f=cap_smallunder%2Cgeo_usa%2C
     # https://finviz.com/screener.ashx?v=411&f=cap_smallunder%2Cgeo_usa%2Csh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o3&o=-change
 base_url2 = "https://www.tradingview.com/markets/stocks-usa/market-movers-after-hours-gainers"
 
+current_date = datetime.datetime.now()
+
 
 # tickers = get_all_finviz_tickers(base_url)
 tickers = get_finviz_tickers_from_tickerview(base_url)
@@ -24,7 +26,6 @@ print(f"After-hours Gainers({len(afters)}):")
 print(afters, "\n")
 
 
-current_date = datetime.datetime.now()
 current_year = int(current_date.strftime("%Y")) # 2025...
 current_month_num = int(current_date.strftime("%m")) # 01-12
 current_day_num = int(current_date.strftime("%d")) # 01-31

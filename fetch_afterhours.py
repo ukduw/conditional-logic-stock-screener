@@ -18,10 +18,14 @@ def get_afterhours_gainers_from_tradingview(filter_url):
             gain_cleaned = gain[1:-1]
 
             if float(gain_cleaned) > 20: # 20% gain, tweak later
-                ticker_containers = row.find_all("a")
-                for t in ticker_containers:
-                    ticker = t.get_text(strip=True)
-                    tickers.append(ticker)
+                ticker_container = row.find("a")
+                ticker = ticker_container.get_text(strip=True)
+                tickers.append(ticker)
+
+                # ticker_containers = row.find("a")
+                # for t in ticker_containers:
+                #    ticker = t.get_text(strip=True)
+                #    tickers.append(ticker)
             else:
                 break
 

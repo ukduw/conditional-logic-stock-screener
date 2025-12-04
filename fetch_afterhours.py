@@ -21,11 +21,6 @@ def get_afterhours_gainers_from_tradingview(filter_url):
                 ticker_container = row.find("a")
                 ticker = ticker_container.get_text(strip=True)
                 tickers.append(ticker)
-
-                # ticker_containers = row.find("a")
-                # for t in ticker_containers:
-                #    ticker = t.get_text(strip=True)
-                #    tickers.append(ticker)
             else:
                 break
 

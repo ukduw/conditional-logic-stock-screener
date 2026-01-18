@@ -20,8 +20,8 @@ afters = get_afterhours_gainers_from_tradingview(base_url2)
 
 current_date = datetime.datetime.now()
 
-rounded_min = (current_date - datetime.timedelta(microseconds=current_date.microsecond // 1000 * 1000))
-without_milli = rounded_min.replace(microsecond=0)
+rounded_sec = (current_date - datetime.timedelta(microseconds=current_date.microsecond // 1000 * 1000))
+without_milli = rounded_sec.replace(microsecond=0)
 
 print(f"=== {without_milli} ===")
 print(f"Filtered List({len(filtered)}):")

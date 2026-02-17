@@ -43,7 +43,7 @@ if first_mon < 1:
     first_mon = first_mon + max(cal.itermonthdays(current_year, current_month_num-1))
 
 
-file_path = f"/home/edhkm/edliu/conditional-logic-stock-screener/weekly-csv/week_beginning_{num_to_month}_{first_mon}.csv"
+file_path = f"/home/edhkm/edliu/conditional-logic-stock-screener/weekly-csv/{current_year}/week_beginning_{num_to_month}_{first_mon}.csv"
 filtered_with_count = [len(filtered)] + filtered
 afters_with_count = [len(afters)] + afters
 

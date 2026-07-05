@@ -37,13 +37,13 @@ def enrich_with_yf_data(ticker_list):
 
     for ticker in ticker_list:
         try:
-            print(f"Fetching data for {ticker["symbol"]}")
+            print(f"Fetching data for {ticker}")
 
-            etf = yf.Ticker(ticker["symbol"])
+            etf = yf.Ticker(ticker)
             hist = etf.history(period="1mo", interval="1d")
 
             if hist.empty:
-                print(f"No yf data available for {ticker["symbol"]}")
+                print(f"No yf data available for {ticker}")
                 break
 
             candle_data = {
@@ -53,7 +53,7 @@ def enrich_with_yf_data(ticker_list):
             }
 
             list_of_dicts.append({
-                "symbol": ticker["symbol"],
+                "symbol": ticker,
                 "percent_range": calc_30d_perc_range(candle_data)
             })
 

@@ -1,5 +1,5 @@
-from etf.fetch_etfs import get_etfs_from_etfcom_cache
-from etf.enrich import enrich_with_yf_data, sort_by_volatility
+from fetch_etfs import get_etfs_from_etfcom_cache
+from enrich import enrich_with_yf_data, sort_by_volatility
 import json
 import datetime
 

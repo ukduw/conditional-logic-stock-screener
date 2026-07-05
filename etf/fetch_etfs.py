@@ -13,7 +13,7 @@ def get_etfs_from_etfcom_cache():
     for row in soup.select("table tbody tr"):
         symbol = row.find("div", class_="w-[60px] text-center text-base-green cursor-pointer").get_text(strip=True)
         #print(symbol)
-        filtered_etfs.append(symbol)
+        filtered_etfs.append( { "symbol": symbol } )
     
     #print(filtered_etfs)
     print(f"ETF screen returned {len(filtered_etfs)} symbols")

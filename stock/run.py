@@ -1,7 +1,7 @@
-from fetch_tickers import get_all_finviz_tickers
-from fetch_tickerview import get_finviz_tickers_from_tickerview
-from fetch_afterhours import get_afterhours_gainers_from_tradingview
-from screener import filtered_tickers
+from stock.fetch_tickers import get_all_finviz_tickers
+from stock.fetch_tickerview import get_finviz_tickers_from_tickerview
+from stock.fetch_afterhours import get_afterhours_gainers_from_tradingview
+from stock.screener import filtered_tickers
 import csv
 import datetime, calendar
 

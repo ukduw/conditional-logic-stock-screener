@@ -8,9 +8,9 @@ tickers = get_etfs_from_etfcom_cache()
 enriched = enrich_with_yf_data(tickers)
 sorted_list = sort_by_volatility(enriched)
 
-file_path = "etf_volatility.json"
+file_path = "etf_volatility.json"   # remember to update with specific filepath...
 with open(file_path, "w") as f:
-    json.dump(sorted_list, f)
+    json.dump(sorted_list, f, indent=4)
 
 
 current_date = datetime.datetime.now()

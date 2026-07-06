@@ -8,7 +8,7 @@ tickers = get_etfs_from_etfcom_cache()
 enriched = enrich_with_yf_data(tickers)
 sorted_list = sort_by_volatility(enriched)
 
-file_path = "etf_volatility.json"   # remember to update with specific filepath...
+file_path = "../support-resistance-detector/etf_volatility.json"
 with open(file_path, "w") as f:
     json.dump(sorted_list, f, indent=4)
 

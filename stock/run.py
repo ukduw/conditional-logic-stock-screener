@@ -28,7 +28,7 @@ if first_mon < 1:
     num_to_month = calendar.month_abbr[current_month_num - 1]
     first_mon = first_mon + max(cal.itermonthdays(current_year, current_month_num-1))
 
-file_path = Path(f"/home/edhkm/edliu/conditional-logic-stock-scre/home/edhkm/edliu/market-holiday-json-writer/market-holidays.jsonener/weekly-csv/{current_year}/week_beginning_{num_to_month}_{first_mon}.csv")
+file_path = Path(f"/home/edhkm/edliu/conditional-logic-stock-screener/weekly-csv/{current_year}/week_beginning_{num_to_month}_{first_mon}.csv")
 file_path.parent.mkdir(parents=True, exist_ok=True)
 
 

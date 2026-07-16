@@ -3,7 +3,7 @@ from fetch_tickerview import get_finviz_tickers_from_tickerview
 from fetch_afterhours import get_afterhours_gainers_from_tradingview
 from screener import filtered_tickers
 import csv, json
-import datetime, calendar
+import datetime, calendar, pytz
 from pathlib import Path
 
 base_url = "https://finviz.com/screener.ashx?v=411&f=cap_smallunder%2Cgeo_usa%2Csh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o3&o=-change"
@@ -35,11 +35,14 @@ file_path.parent.mkdir(parents=True, exist_ok=True)
 with open('/home/edhkm/edliu/market-holiday-json-writer/market-holidays.json', 'r') as f:
     market_holiday_list = json.load(f)
 
+eastern = pytz.timezone("US/Eastern")
+current_eastern = datetime.datetime.now(eastern)
+
 rounded_sec = (current_date - datetime.timedelta(microseconds=current_date.microsecond // 1000 * 1000))
 without_milli = rounded_sec.replace(microsecond=0)
 
 
-if str(current_date.date()) in market_holiday_list:  # fine, actually, since screener should still run on * holidays
+if str(current_eastern.date()) in market_holiday_list:  # fine, actually, since screener should still run on * holidays
     print(f"=== {without_milli} ===")
     print("Market holiday")
 

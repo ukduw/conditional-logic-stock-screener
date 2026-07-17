@@ -1,5 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
+import re
 
 def get_afterhours_gainers_from_tradingview(filter_url):
     tickers = []
@@ -11,7 +12,7 @@ def get_afterhours_gainers_from_tradingview(filter_url):
     table = soup.find("table")
 
     for row in table.find_all("tr"):
-        gains = row.find("span", class_="positive-p_QIAEOQ")
+        gains = row.find("span", class_=re.compile(r"^positive-"))
 
         if gains is not None:
             gain = gains.get_text(strip=True)

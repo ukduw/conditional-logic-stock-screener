@@ -25,7 +25,7 @@ def get_afterhours_gainers_from_tradingview(filter_url):
             else:
                 break
 
-    print(f"After-hours screen returned {len(tickers)} Tickers")
+    # print(f"After-hours screen returned {len(tickers)} Tickers")
 
 
     return tickers

@@ -44,7 +44,7 @@ without_milli = rounded_sec.replace(microsecond=0)
 
 if str(current_eastern.date()) in market_holiday_list:  # fine, actually, since screener should still run on * holidays
     print(f"=== {without_milli} ===")
-    print("Market holiday")
+    print("Market holiday", "\n")
 
     with file_path.open(mode='a', newline='') as file:
         writer = csv.writer(file)
@@ -52,12 +52,13 @@ if str(current_eastern.date()) in market_holiday_list:  # fine, actually, since 
         file.write("\n\n")
 
 else:
+    print(f"=== {without_milli} ===")
+    
     # tickers = get_all_finviz_tickers(base_url)
     tickers = get_finviz_tickers_from_tickerview(base_url)
     filtered = filtered_tickers(tickers)
     afters = get_afterhours_gainers_from_tradingview(base_url2)
 
-    print(f"=== {without_milli} ===")
     print(f"Filtered List({len(filtered)}):")
     print(filtered)
     print(f"After-hours Gainers({len(afters)}):")

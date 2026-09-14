@@ -43,6 +43,9 @@ def filtered_tickers(ticker_list):
 
         perc_range = ((high[0] - low[0]) / close[0]) * 100
         if perc_range > 70: # TWEAK
+            # UPDATE: works as intended; 70% may be too strict... needs more testing
+                # doesn't seem to work(?) for aftermarket gainers (maybe because high/low are DAY high/low?)
+                # but that's fine, since separate aftermarket list is always kept...
             test_list.append(ticker)
 
     return shortlist, test_list

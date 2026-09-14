@@ -56,7 +56,7 @@ else:
     
     # tickers = get_all_finviz_tickers(base_url)
     tickers = get_finviz_tickers_from_tickerview(base_url)
-    filtered = filtered_tickers(tickers)
+    filtered, test = filtered_tickers(tickers)
     afters = get_afterhours_gainers_from_tradingview(base_url2)
 
     print(f"Filtered List({len(filtered)}):")
@@ -71,4 +71,5 @@ else:
     with file_path.open(mode='a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(filtered_with_count + [" - "] + afters_with_count)
+        writer.writerow(["testing:"] + test)
         file.write("\n\n")

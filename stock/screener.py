@@ -14,8 +14,38 @@ def passes_custom_filter(ticker):
         print(f"Error for {ticker}: {e}")
         return False
 
+# def filtered_tickers(ticker_list):
+#     return [t for t in ticker_list if passes_custom_filter(t)]
+
+
 def filtered_tickers(ticker_list):
-    return [t for t in ticker_list if passes_custom_filter(t)]
+    shortlist = [t for t in ticker_list if passes_custom_filter(t)]
+
+    test_list = []
+    for ticker in shortlist:
+        stock = yf.Ticker(ticker)
+        hist = stock.history(period="1d", interval="1d")
+        
+        if hist.empty:
+            test_list.append(ticker)
+            continue
+            # 1.
+        
+        high = hist["High"].tolist()
+        low = hist["Low"].tolist()
+        close = hist["Close"].tolist()
+            # i think i remember the api returns numpy arrays...
+
+        if not high or not low or not close:
+            test_list.append(ticker)
+            continue
+            # 2. in either case, keep the ticker with incomplete data - decision needs to be made manually...
+
+        perc_range = ((high[0] - low[0]) / close[0]) * 100
+        if perc_range > 70: # TWEAK
+            test_list.append(ticker)
+
+    return shortlist, test_list
 
 
 # note: no otc coverage on finviz, but alpaca can't trade otc's anyways...

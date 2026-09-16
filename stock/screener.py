@@ -43,19 +43,11 @@ def filtered_tickers(ticker_list):
 
         perc_range = ((high[0] - low[0]) / close[0]) * 100
         if perc_range > 70: # TWEAK
-            # UPDATE: works as intended; 70% may be too strict... needs more testing
-                # doesn't seem to work(?) for aftermarket gainers (maybe because high/low are DAY high/low?)
-                # but that's fine, since separate aftermarket list is always kept...
-
-            # aftermarket timeframe could be requested... and high/low found manually from max()/min() of lists of highs/lows
-            # but, thinking about it, premarket timeframe would also need to be covered in case the spike occurred in the premarket
-            # instead, it'd probably be better to replace all 3 (so, including the existing implementation)
-                # premarket, regular, aftermarket
-                # ...with lists of highs/lows, and finding the range with max()/min()
-            # request the entire extended hours, start to finish...
-
-            # shortlist and aftermarket lists need different parameters
-            # so, this func needs to be reworked to take the aftermarket list as an argument
+            # .history vs .download - need to use prepost=True parameter for extended hours data
+            # request period=1d, interval=1h, fewest necessary bars
+            # write test func and add it to orchestration so current implementation still runs normally
+            # once everything works, use the new list as the main and use it to figure out the rejected ones
+                # maybe keep this reject list underneath it in the output file for manual inspection...
             test_list.append(ticker)
 
     return shortlist, test_list

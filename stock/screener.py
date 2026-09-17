@@ -1,4 +1,10 @@
 import yfinance as yf
+import datetime, pytz
+
+est = pytz.timezone('US/Eastern')
+today = datetime.datetime.now(est)
+tomorrow = today + datetime.timedelta(days=1)
+
 
 def passes_custom_filter(ticker):
     try:
@@ -18,39 +24,48 @@ def passes_custom_filter(ticker):
 #     return [t for t in ticker_list if passes_custom_filter(t)]
 
 
-def filtered_tickers(ticker_list):
-    shortlist = [t for t in ticker_list if passes_custom_filter(t)]
+def filtered_tickers(ticker_list, aftermarket_list):
+    shortlist = [t for t in ticker_list if passes_custom_filter(t) and t not in aftermarket_list]
+    full_list = list(set(ticker_list + aftermarket_list))
 
     test_list = []
-    for ticker in shortlist:
+    test_after_list = []
+
+    for ticker in full_list:
         stock = yf.Ticker(ticker)
-        hist = stock.history(period="1d", interval="1d")
+        hist = stock.history(start=f"{str(today.date())}", end=f"{str(tomorrow.date())}", interval="1h", prepost=True)
         
         if hist.empty:
             test_list.append(ticker)
             continue
             # 1.
         
-        high = hist["High"].tolist()
-        low = hist["Low"].tolist()
-        close = hist["Close"].tolist()
-            # i think i remember the api returns numpy arrays...
+        candle_data = {
+            "high": hist["High"].tolist(),
+            "low": hist["Low"].tolist(),
+            "close": hist["Close"].tolist()
+        }
 
-        if not high or not low or not close:
+        if not candle_data["high"] or not candle_data["low"] or not candle_data["close"]:
             test_list.append(ticker)
             continue
             # 2. in either case, keep the ticker with incomplete data - decision needs to be made manually...
 
-        perc_range = ((high[0] - low[0]) / close[0]) * 100
-        if perc_range > 70: # TWEAK
-            # .history vs .download - need to use prepost=True parameter for extended hours data
-            # request period=1d, interval=1h, fewest necessary bars
-            # write test func and add it to orchestration so current implementation still runs normally
-            # once everything works, use the new list as the main and use it to figure out the rejected ones
-                # maybe keep this reject list underneath it in the output file for manual inspection...
-            test_list.append(ticker)
+        day_high = max(candle_data["high"])
+        day_low = min(candle_data["low"])
+        last_close = candle_data["close"][-1]
 
-    return shortlist, test_list
+        if last_close == 0:
+            test_list.append(ticker)
+            continue
+
+        perc_range = ((day_high - day_low) / last_close) * 100
+        if ticker in shortlist and perc_range > 70: # TWEAK
+            test_list.append(ticker)
+        if ticker in aftermarket_list and perc_range > 50: # TWEAK
+            test_after_list.append(ticker)
+
+    return shortlist, test_list, test_after_list
 
 
 # note: no otc coverage on finviz, but alpaca can't trade otc's anyways...

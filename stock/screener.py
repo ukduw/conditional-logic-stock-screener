@@ -41,6 +41,7 @@ def filtered_tickers(ticker_list, aftermarket_list):
             # 1.
         
         candle_data = {
+            "open": hist["Open"].tolist(),
             "high": hist["High"].tolist(),
             "low": hist["Low"].tolist(),
             "close": hist["Close"].tolist()
@@ -51,19 +52,25 @@ def filtered_tickers(ticker_list, aftermarket_list):
             continue
             # 2. in either case, keep the ticker with incomplete data - decision needs to be made manually...
 
+        first_open = candle_data["open"][0]
         day_high = max(candle_data["high"])
         day_low = min(candle_data["low"])
         last_close = candle_data["close"][-1]
 
-        if last_close == 0:
+        if first_open == 0:     # last_close == 0
             test_list.append(ticker)
             continue
 
-        perc_range = ((day_high - day_low) / last_close) * 100
-        if ticker in shortlist and perc_range > 70: # TWEAK
-            test_list.append(ticker)
-        if ticker in aftermarket_list and perc_range > 50: # TWEAK
-            test_after_list.append(ticker)
+        # perc_range = ((day_high - day_low) / last_close) * 100
+        perc_gain = (day_high / first_open - 1) * 100
+        perc_loss = (day_low / first_open - 1) * 100
+
+        if ticker in shortlist:
+            if perc_gain > 70 or perc_loss > 40: # TWEAK
+                test_list.append(ticker)
+        if ticker in aftermarket_list:
+            if perc_gain > 50 or perc_loss > 40: # TWEAK
+                test_after_list.append(ticker)
 
     return shortlist, test_list, test_after_list
 

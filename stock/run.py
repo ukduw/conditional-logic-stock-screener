@@ -70,9 +70,12 @@ else:
     filtered_with_count = [len(filtered)] + filtered
     afters_with_count = [len(afters)] + afters
 
+    test_with_count = [len(test)] + test
+    afters_test_with_count = [len(afters_test)] + afters_test
+
     with file_path.open(mode='a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(filtered_with_count + [" - "] + afters_with_count)
-        writer.writerow(["testing:"] + test)
-        writer.writerow(["afters testing:"] + afters_test)
+        writer.writerow(["testing:"] + test_with_count)
+        writer.writerow(["afters testing:"] + afters_test_with_count)
         file.write("\n\n")

@@ -59,11 +59,17 @@ else:
     afters = get_afterhours_gainers_from_tradingview(base_url2)
     filtered, test, afters_test = filtered_tickers(tickers, afters)
 
+    rejected_filtered = [t for t in filtered if t not in test]
+    rejected_afters = [t for t in afters if t not in afters_test]
+
+
     print(f"Filtered List({len(filtered)}): {filtered}")
-    print(f"Test ({len(test)}): {test}")
+    print(f"Test({len(test)}): {test}")
+    print(f"Rejected({len(rejected_filtered)}): {rejected_filtered}")
 
     print(f"After-hours Gainers({len(afters)}): {afters}")
-    print(f"Afters test({len(afters_test)}): {afters_test}", "\n")
+    print(f"Afters Test({len(afters_test)}): {afters_test}")
+    print(f"Afters Rejected({len(rejected_afters)}): {rejected_afters}", "\n")
 
 
     filtered_with_count = [len(filtered)] + filtered

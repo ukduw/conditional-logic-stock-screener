@@ -78,9 +78,12 @@ else:
     test_with_count = [len(test)] + test
     afters_test_with_count = [len(afters_test)] + afters_test
 
+    rejected_with_count = [len(rejected_filtered)] + rejected_filtered
+    afters_rejected_with_count = [len(rejected_afters)] + rejected_afters
+
     with file_path.open(mode='a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow(filtered_with_count + [" - "] + afters_with_count)
-        writer.writerow(["testing:"] + test_with_count)
-        writer.writerow(["afters testing:"] + afters_test_with_count)
+        writer.writerow(["testing:"] + test_with_count + [" - "] + afters_test_with_count)
+        writer.writerow(["rejected:"] + rejected_with_count + [" - "] + afters_rejected_with_count)
         file.write("\n\n")

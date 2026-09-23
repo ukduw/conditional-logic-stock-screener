@@ -59,12 +59,11 @@ else:
     afters = get_afterhours_gainers_from_tradingview(base_url2)
     filtered, test, afters_test = filtered_tickers(tickers, afters)
 
-    print(f"Filtered List({len(filtered)}):")
-    print(filtered)
-    print("Test:", test)
-    print(f"After-hours Gainers({len(afters)}):")
-    print(afters)
-    print("Afters test:", afters_test, "\n")
+    print(f"Filtered List({len(filtered)}): {filtered}")
+    print(f"Test ({len(test)}): {test}")
+
+    print(f"After-hours Gainers({len(afters)}): {afters}")
+    print(f"Afters test({len(afters_test)}): {afters_test}", "\n")
 
 
     filtered_with_count = [len(filtered)] + filtered

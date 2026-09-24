@@ -57,33 +57,33 @@ else:
     # tickers = get_all_finviz_tickers(base_url)
     tickers = get_finviz_tickers_from_tickerview(base_url)
     afters = get_afterhours_gainers_from_tradingview(base_url2)
-    filtered, test, afters_test = filtered_tickers(tickers, afters)
+    filtered, double_filtered, afters_filtered = filtered_tickers(tickers, afters)
 
-    rejected_filtered = [t for t in filtered if t not in test]
-    rejected_afters = [t for t in afters if t not in afters_test]
+    rejected_filtered = [t for t in filtered if t not in double_filtered]
+    rejected_afters = [t for t in afters if t not in afters_filtered]
 
 
-    print(f"Filtered List({len(filtered)}): {filtered}")
-    print(f"Test({len(test)}): {test}")
+    #print(f"Filtered List({len(filtered)}): {filtered}")
+    print(f"Double Filtered({len(double_filtered)}): {double_filtered}")
     print(f"Rejected({len(rejected_filtered)}): {rejected_filtered}")
 
-    print(f"After-hours Gainers({len(afters)}): {afters}")
-    print(f"Afters Test({len(afters_test)}): {afters_test}")
+    #print(f"After-hours Gainers({len(afters)}): {afters}")
+    print(f"Afters double_filtered({len(afters_filtered)}): {afters_filtered}")
     print(f"Afters Rejected({len(rejected_afters)}): {rejected_afters}", "\n")
 
 
-    filtered_with_count = [len(filtered)] + filtered
-    afters_with_count = [len(afters)] + afters
+    #filtered_with_count = [len(filtered)] + filtered
+    #afters_with_count = [len(afters)] + afters
 
-    test_with_count = [len(test)] + test
-    afters_test_with_count = [len(afters_test)] + afters_test
+    double_filtered_with_count = [len(double_filtered)] + double_filtered
+    afters_filtered_with_count = [len(afters_filtered)] + afters_filtered
 
     rejected_with_count = [len(rejected_filtered)] + rejected_filtered
     afters_rejected_with_count = [len(rejected_afters)] + rejected_afters
 
     with file_path.open(mode='a', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow(filtered_with_count + [" - "] + afters_with_count)
-        writer.writerow(["testing:"] + test_with_count + [" - "] + afters_test_with_count)
+        #writer.writerow(filtered_with_count + [" - "] + afters_with_count)
+        writer.writerow(double_filtered_with_count + [" - "] + afters_filtered_with_count)
         writer.writerow(["rejected:"] + rejected_with_count + [" - "] + afters_rejected_with_count)
         file.write("\n\n")

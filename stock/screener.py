@@ -28,15 +28,15 @@ def filtered_tickers(ticker_list, aftermarket_list):
     shortlist = [t for t in ticker_list if passes_custom_filter(t) and t not in aftermarket_list]
     full_list = list(set(ticker_list + aftermarket_list))
 
-    test_list = []
-    test_after_list = []
+    double_filtered_list = []
+    afters_filtered_list = []
 
     for ticker in full_list:
         stock = yf.Ticker(ticker)
         hist = stock.history(start=f"{str(today.date())}", end=f"{str(tomorrow.date())}", interval="1h", prepost=True)
         
         if hist.empty:
-            test_list.append(ticker)
+            double_filtered_list.append(ticker)
             continue
             # 1.
         
@@ -48,7 +48,7 @@ def filtered_tickers(ticker_list, aftermarket_list):
         }
 
         if not candle_data["high"] or not candle_data["low"] or not candle_data["close"]:
-            test_list.append(ticker)
+            double_filtered_list.append(ticker)
             continue
             # 2. in either case, keep the ticker with incomplete data - decision needs to be made manually...
 
@@ -58,7 +58,7 @@ def filtered_tickers(ticker_list, aftermarket_list):
         last_close = candle_data["close"][-1]
 
         if first_open == 0:     # last_close == 0
-            test_list.append(ticker)
+            double_filtered_list.append(ticker)
             continue
 
         # perc_range = ((day_high - day_low) / last_close) * 100
@@ -67,12 +67,12 @@ def filtered_tickers(ticker_list, aftermarket_list):
 
         if ticker in shortlist:
             if perc_gain > 70 or perc_loss > 40: # TWEAK
-                test_list.append(ticker)
+                double_filtered_list.append(ticker)
         if ticker in aftermarket_list:
             if perc_gain > 50 or perc_loss > 40: # TWEAK
-                test_after_list.append(ticker)
+                afters_filtered_list.append(ticker)
 
-    return shortlist, test_list, test_after_list
+    return shortlist, double_filtered_list, afters_filtered_list
 
 
 # note: no otc coverage on finviz, but alpaca can't trade otc's anyways...

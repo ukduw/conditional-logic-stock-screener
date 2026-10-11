@@ -14,8 +14,8 @@ def passes_custom_filter(ticker):
         dollar_volume = info.get("currentPrice") * volume # regularMarketPrice?
         market_cap = info.get("marketCap")
 
-        # 1) Float rotation check, 2) $Vol > MCap", 3) Vol >= 1,000,000
-        return (volume > float_shares and dollar_volume > market_cap and volume >= 1000000) if float_shares is not None else (dollar_volume > market_cap)
+        # 1) Float rotation check, 2) $Vol > MCap", 3) 
+        return (volume > float_shares and dollar_volume > market_cap) if float_shares is not None else (dollar_volume > market_cap)
     except Exception as e:
         print(f"Error for {ticker}: {e}")
         return False

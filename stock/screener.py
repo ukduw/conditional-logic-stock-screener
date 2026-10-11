@@ -66,10 +66,10 @@ def filtered_tickers(ticker_list, aftermarket_list):
         perc_loss = (day_low / first_open - 1) * 100
 
         if ticker in shortlist:
-            if perc_gain > 60 or perc_loss > 40: # TWEAK
+            if perc_gain > 60 or perc_loss < -40: # TWEAK
                 double_filtered_list.append(ticker)
         if ticker in aftermarket_list:
-            if perc_gain > 50 or perc_loss > 40: # TWEAK
+            if perc_gain > 50 or perc_loss < -40: # TWEAK
                 afters_filtered_list.append(ticker)
 
     return shortlist, double_filtered_list, afters_filtered_list

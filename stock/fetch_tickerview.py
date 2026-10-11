@@ -16,6 +16,7 @@ def get_finviz_tickers_from_tickerview(filter_url):
         tickers.append(text)
 
     print(f"Initial screen returned {len(tickers)} Tickers")
+    print(tickers)
 
     
     return tickers

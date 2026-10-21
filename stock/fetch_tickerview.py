@@ -8,12 +8,12 @@ def get_finviz_tickers_from_tickerview(filter_url):
     response = requests.get(filter_url, headers=headers)
     soup = BeautifulSoup(response.text, "html.parser")
 
-    bold_tags = soup.find_all("b")
-    tickers_only = bold_tags[3:-1]
+    a_tags = soup.find_all("a")
+    #tickers_only = a_tags[3:-1]
 
-    for ticker in tickers_only:
-        text = ticker.get_text(strip=True)
-        tickers.append(text)
+    for ticker in a_tags:
+        if ticker.get("data-ticker"):
+            tickers.append(ticker.get("data-ticker"))
 
     print(f"Initial screen returned {len(tickers)} Tickers")
     print(tickers)
@@ -21,3 +21,5 @@ def get_finviz_tickers_from_tickerview(filter_url):
     
     return tickers
 
+
+#get_finviz_tickers_from_tickerview("https://finviz.com/screener/stocks?v=411&f=geo_usa%2Csh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o3&o=-change")

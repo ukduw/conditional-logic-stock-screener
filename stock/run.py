@@ -7,7 +7,7 @@ import datetime, calendar, pytz
 from pathlib import Path
 
 base_url = "https://finviz.com/screener.ashx?v=411&f=cap_smallunder%2Cgeo_usa%2Csh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o3&o=-change"
-TEST_URL = "https://finviz.com/screener/stocks?v=411&f=geo_usa%2Csh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o3&o=-change"
+TEST_URL = "https://finviz.com/screener/stocks?v=411&f=sh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o3&o=-change"
     # initial screener
     # https://finviz.com/screener.ashx?v=111&f=cap_smallunder%2Cgeo_usa%2Csh_curvol_o1000%2Csh_price_u20%2Csh_relvol_o2&o=-change
     # initial screener + 3x r.vol, TICKER ONLY

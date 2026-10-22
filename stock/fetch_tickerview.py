@@ -9,7 +9,6 @@ def get_finviz_tickers_from_tickerview(filter_url):
     soup = BeautifulSoup(response.text, "html.parser")
 
     a_tags = soup.find_all("a")
-    #tickers_only = a_tags[3:-1]
 
     for ticker in a_tags:
         if ticker.get("data-ticker"):
